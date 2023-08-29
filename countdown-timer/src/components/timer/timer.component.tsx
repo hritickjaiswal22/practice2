@@ -17,18 +17,23 @@ const TimerComponent = (props: TimerProps) => {
     recurse(time);
   }
 
+  function clearTimerTimeout() {
+    if (timerRef.current) clearTimeout(timerRef.current);
+  }
+
   function recurse(time: number) {
     if (time >= 0) {
       setCountdown(time);
+      clearTimerTimeout();
       if (time - 1 < 0 && onExpire) {
         onExpire();
       }
       timerRef.current = setTimeout(() => recurse(time - 1), 1000);
-    }
+    } else clearTimerTimeout();
   }
 
   function reset() {
-    if (timerRef.current) clearTimeout(timerRef.current);
+    clearTimerTimeout();
     setCountdown(0);
     if (onExpire) onExpire();
   }
