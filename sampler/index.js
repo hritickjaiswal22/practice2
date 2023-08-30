@@ -1,18 +1,23 @@
 function sampler(fn, n) {
   let count = 0;
 
-  return function () {
+  return function (...args) {
     count++;
     count = count % n;
-    if (count === 0) return fn();
+    if (count === 0) return fn(...args);
   };
 }
 
-const sampled = sampler(() => console.log("Hello World"), 2);
+function message(...args) {
+  console.log("Hello World");
+  console.log(args);
+}
+
+const sampled = sampler(message, 4);
 sampled();
 sampled();
 sampled();
-sampled();
+sampled(1, 2, 3);
 sampled();
 sampled();
 sampled();
