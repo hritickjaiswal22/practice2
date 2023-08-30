@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressContainer {
+  max-width: 500px;
+  width: 90%;
+  height: 40px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: rgb(102, 77, 192);
+}
