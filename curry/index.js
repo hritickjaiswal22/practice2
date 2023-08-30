@@ -14,18 +14,18 @@
 // console.log(curried1(8));
 // console.log(curried1(0));
 
-function curry2(initialValue = 0) {
-  let result = initialValue;
+function curry2(...initialArgs) {
+  let result = initialArgs;
 
-  function inner(val) {
-    if (val === undefined) return result;
+  function inner(...args) {
+    if (args.length === 0) return result.reduce((acc, val) => acc + val, 0);
 
-    result += val;
+    result = [...result, ...args];
     return inner;
   }
 
   return inner;
 }
 
-const total = curry2(10)(20)(30)(40)();
+const total = curry2(1, 1, 1, 1)(2)(3, 3)(4, 4)();
 console.log(total);
