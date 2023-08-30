@@ -30,31 +30,47 @@
 // const total = curry2(1, 1, 1, 1)(2)(3, 3)(4, 4)();
 // console.log(total);
 
-function sum(a, b, c, d) {
-  return a + b + c + d;
-}
+// function sum(a, b, c, d) {
+//   return a + b + c + d;
+// }
 
-function curry(fn) {
-  const argsLength = fn.length;
-  let result = [];
+// function curry(fn) {
+//   const argsLength = fn.length;
+//   let result = [];
+
+//   function inner(...args) {
+//     result.push(...args);
+
+//     if (result.length >= argsLength) {
+//       const temp = result.slice(0, argsLength);
+//       result = [];
+//       return fn(...temp);
+//     }
+
+//     return inner;
+//   }
+
+//   return inner;
+// }
+
+// const curried3 = curry(sum);
+
+// console.log(curried3(1, 2, 3, 4));
+// console.log(curried3()(2, 3)(4)(1));
+// console.log(curried3(1)(2)(3)(4));
+
+function curry4(...initialArgs) {
+  let result = initialArgs;
 
   function inner(...args) {
-    result.push(...args);
-
-    if (result.length >= argsLength) {
-      const temp = result.slice(0, argsLength);
-      result = [];
-      return fn(...temp);
-    }
+    result = [...result, ...args];
 
     return inner;
   }
+  inner.value = () => result.reduce((acc, val) => acc + val, 0);
+  inner.valueOf = () => result.reduce((acc, val) => acc + val, 0);
 
   return inner;
 }
 
-const curried3 = curry(sum);
-
-console.log(curried3(1, 2, 3, 4));
-console.log(curried3()(2, 3)(4)(1));
-console.log(curried3(1)(2)(3)(4));
+console.log(curry4(1, 2)(3, 4, 5) + 5);
