@@ -5,8 +5,8 @@ class BrowserHistory {
   }
 
   visits(url) {
-    this.history.push(url);
-    this.currentUrlIndex = this.history.length - 1;
+    this.history[++this.currentUrlIndex] = url;
+    this.history.length = this.currentUrlIndex + 1;
   }
 
   current() {
