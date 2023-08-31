@@ -8,4 +8,23 @@ function getComputedColor(colorCode) {
   return color;
 }
 
-console.log(getComputedColor("red") === getComputedColor("#f00"));
+function domElementsWithSameColor(color) {
+  function find(domElement) {
+    if (getComputedColor(domElement.style.color) === commonStandardColor)
+      result.push(domElement);
+
+    const children = domElement.children;
+
+    for (const child of children) {
+      find(child);
+    }
+  }
+
+  const commonStandardColor = getComputedColor(color);
+  const result = [];
+  find(document.querySelector("#root"));
+
+  return result;
+}
+
+console.log(domElementsWithSameColor("black"));
