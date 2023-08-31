@@ -4,7 +4,7 @@ function flatten(obj) {
   for (const key of Object.keys(obj)) {
     const val = obj[key];
 
-    if (typeof val === "object" || Array.isArray(val)) {
+    if (val !== null && (typeof val === "object" || Array.isArray(val))) {
       const innerObj = flatten(val);
 
       for (const innerKey of Object.keys(innerObj)) {
