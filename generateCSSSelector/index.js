@@ -1,28 +1,44 @@
-function generateCSSSelector(domElement, targetId) {
-  if (domElement.id == targetId) return `#${domElement.id}`;
+function getCurrentSelector(domElement, index) {
+  let currentSelector = "";
 
-  let result = "";
+  if (domElement.id) currentSelector = `#${domElement.id}`;
+  else
+    currentSelector = `${domElement.tagName.toLowerCase()}:nth-child(${
+      index + 1
+    })`;
+
+  return currentSelector;
+}
+
+function generateCSSSelector(domElement, target, index) {
+  if (domElement === target) {
+    const currentSelector = getCurrentSelector(domElement, index);
+    return currentSelector;
+  }
+
   const children = domElement.children;
+  let temp = "";
 
-  for (const child of children) {
-    const temp = generateCSSSelector(child, targetId);
+  for (let i = 0; i < children.length; i++) {
+    const returnedValue = generateCSSSelector(children[i], target, i);
 
-    if (temp) {
-      result = temp;
+    if (returnedValue) {
+      temp = returnedValue;
       break;
     }
   }
 
-  if (result) {
-    let currentSelector = "";
-
-    if (domElement.id) currentSelector = `#${domElement.id}`;
-    else if (domElement.className) currentSelector = `.${domElement.className}`;
-    else currentSelector = domElement.tagName.toLowerCase();
-
-    return `${currentSelector} > ${result}`;
+  if (temp) {
+    const currentSelector = getCurrentSelector(domElement, index);
+    return `${currentSelector} > ${temp}`;
   }
   return "";
 }
 
-console.log(generateCSSSelector(document.body, "target"));
+console.log(
+  generateCSSSelector(
+    document.getElementById("root"),
+    document.getElementById("target"),
+    0
+  )
+);

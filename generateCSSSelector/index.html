@@ -6,8 +6,8 @@
     <title>Document</title>
 
     <style>
-      body > #root > section > p > span > #target {
-        background-color: red;
+      #root > section:nth-child(2) > #target {
+        background-color: purple;
       }
     </style>
   </head>
@@ -16,11 +16,11 @@
       <article>Text</article>
       <section>
         1
-        <p>
+        <button id="target">Click Me</button>
+        <p class="test">
           <span>
             2
             <button>3</button>
-            <button id="target">Click Me</button>
           </span>
         </p>
       </section>
