@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body > #root > section > p > span > #target {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <article>Text</article>
+      <section>
+        1
+        <p>
+          <span>
+            2
+            <button>3</button>
+            <button id="target">Click Me</button>
+          </span>
+        </p>
+      </section>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
