@@ -14,6 +14,10 @@ function createCircle(left, top) {
   return circle;
 }
 
+function getrandomColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
+
 function mouseUpHandler(e) {
   if (e) {
     const { x, y } = e;
@@ -34,7 +38,7 @@ function mouseUpHandler(e) {
         ) <=
         2 * radius
       ) {
-        circle.style.backgroundColor = "green";
+        circle.style.backgroundColor = getrandomColor();
       }
     }
 
