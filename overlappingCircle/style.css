@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#canvas {
+  width: 98%;
+  height: 90vh;
+  position: relative;
+  margin: 1rem auto;
+  border: 1px solid;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.circle {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background-color: orangered;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
