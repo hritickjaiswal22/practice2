@@ -1,8 +1,16 @@
 const btn = document.querySelector("button");
 
-function debounce(fn, delay = 200, leading) {
+function debounce(
+  fn,
+  delay = 200,
+  option = {
+    leading: false,
+    trailing: true,
+  }
+) {
   let timerId = null;
-  let count = 0;
+  const { leading, trailing } = option;
+  let leadingFlag = true;
 
   return function () {
     clearTimeout(timerId);
@@ -10,14 +18,16 @@ function debounce(fn, delay = 200, leading) {
     const args = arguments;
     const ctx = this;
 
-    if (leading && !count) {
+    if (leading && leadingFlag) {
       fn.apply(ctx, args);
+      leadingFlag = false;
     }
 
-    count++;
     timerId = setTimeout(() => {
-      fn.apply(ctx, args);
-      count = 0;
+      if (trailing) {
+        fn.apply(ctx, args);
+      }
+      leadingFlag = true;
     }, delay);
   };
 }
@@ -27,7 +37,10 @@ function print(args) {
   console.log(args);
 }
 
-const debouncedPrint = debounce(print, 1000, true);
+const debouncedPrint = debounce(print, 1000, {
+  leading: true,
+  trailing: true,
+});
 
 btn.addEventListener("click", () => debouncedPrint("Hello"));
 
