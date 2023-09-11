@@ -1,5 +1,6 @@
 const btn = document.querySelector("button");
 
+// THIS IS TRAILING BY DEFAULT
 function debounce(fn, delay = 200) {
   let timerId = null;
 
@@ -23,3 +24,5 @@ function print(args) {
 const debouncedPrint = debounce(print);
 
 btn.addEventListener("click", () => debouncedPrint("Hello"));
+
+// IN LEADING OPTION IT WILL FIRE IMMEDIATELY
