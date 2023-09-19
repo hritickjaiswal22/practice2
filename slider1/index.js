@@ -7,7 +7,6 @@ const images = [
   "https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1652341392/EducationHub/photos/saguaro-cacti.jpg",
   "https://cdn.wallpapersafari.com/53/62/l6bruO.jpg",
 ];
-const sliderWidth = slider.getBoundingClientRect().width;
 let current = 0;
 
 function createSlider() {
@@ -19,7 +18,7 @@ function createSlider() {
 
     img.src = image;
     slide.className = "slide";
-    slide.style.left = `${index * sliderWidth}px`;
+    slide.style.left = `${index * 100}%`;
 
     slide.appendChild(img);
     fragment.appendChild(slide);
@@ -34,10 +33,10 @@ function slide(width) {
 
   slides.forEach((slide) => {
     let left = slide.style.left;
-    left = left.substring(0, left.length - 2);
+    left = left.substring(0, left.length - 1);
     left = Number(left);
     left = left + width;
-    slide.style.left = `${left}px`;
+    slide.style.left = `${left}%`;
   });
 }
 
@@ -48,12 +47,12 @@ function nextSlide() {
   if (slides) {
     if (current >= images.length) {
       slides.forEach((slide, index) => {
-        slide.style.left = `${index * sliderWidth}px`;
+        slide.style.left = `${index * 100}%`;
       });
 
       current = 0;
     } else {
-      slide(-1 * sliderWidth);
+      slide(-1 * 100);
     }
   }
 }
@@ -67,12 +66,12 @@ function prevSlide() {
     for (let i = slides.length - 1; i >= 0; i--) {
       const slide = slides[i];
 
-      slide.style.left = `${-1 * j * sliderWidth}px`;
+      slide.style.left = `${-1 * j * 100}%`;
       j++;
     }
 
     current = images.length - 1;
-  } else slide(sliderWidth);
+  } else slide(100);
 }
 
 createSlider();
