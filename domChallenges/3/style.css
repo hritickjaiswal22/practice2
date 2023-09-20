@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.board {
+  width: 100vmin;
+  height: 100vmin;
+  margin: 0 auto;
+  border: 1px solid;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  border: 1px solid;
+  cursor: pointer;
+}
