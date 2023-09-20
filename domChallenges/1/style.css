@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fa-star-o:before {
+  content: "\f006";
+  color: #5f6368;
+}
+
+.fa-star:before {
+  content: "\f005";
+  color: #d56e0c;
+}
+
+.ratingSection {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid;
+  margin: 1rem auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.fa {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin: 0.25rem;
+}
