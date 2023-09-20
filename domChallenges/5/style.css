@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.progressbar__container {
+  max-width: 31.25rem;
+  width: 95%;
+  height: 3.125rem;
+  border: 1px solid;
+}
+
+.progressbar__body {
+  width: 0;
+  height: 100%;
+  background-color: orangered;
+}
