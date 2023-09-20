@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.gridSection {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  height: 100vmin;
+  width: 100vmin;
+  margin: 0 auto;
+  border: 1px solid;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box {
+  border: 1px solid;
+  cursor: pointer;
+}
