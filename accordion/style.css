@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+}
+
+.container {
+  width: 90%;
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  margin: 2rem auto;
+}
+
+.accordion__body {
+  margin: 0.5rem 0;
+}
+
+.accordion__info {
+  display: none;
+  padding: 0.5rem;
+}
+
+.accordion__checkbox--label {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #5858c5;
+  color: #fff;
+  cursor: pointer;
+}
+
+.accordion__checkbox {
+  display: none;
+}
+
+.accordion__checkbox:checked + div.accordion__info {
+  display: block;
+}
