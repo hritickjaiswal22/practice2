@@ -6,3 +6,14 @@
   position: relative;
   overflow: hidden;
 }
+
+.slider_btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.next_btn {
+  left: 100%;
+  transform: translateX(-100%);
+}

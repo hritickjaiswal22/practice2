@@ -59,9 +59,19 @@ const Slider = ({ images }: Props) => {
         {images.map((image, i) => (
           <Slide imgSrc={image} key={i} left={lefts[i]} />
         ))}
+        <button
+          className={`${styles.slider_btn} ${styles.prev_btn}`}
+          onClick={prevSlide}
+        >
+          Prev
+        </button>
+        <button
+          className={`${styles.slider_btn} ${styles.next_btn}`}
+          onClick={nextSlide}
+        >
+          Next
+        </button>
       </main>
-      <button onClick={prevSlide}>Prev</button>
-      <button onClick={nextSlide}>Next</button>
     </>
   );
 };
