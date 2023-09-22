@@ -1,5 +1,3 @@
-import React from "react";
-
 import styles from "./slide.module.css";
 
 type Props = {
