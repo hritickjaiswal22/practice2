@@ -1,0 +1,22 @@
+.container {
+  height: 1.25rem;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 1rem;
+}
+
+.weak {
+  background-color: orangered;
+}
+
+.moderate {
+  background-color: yellow;
+}
+
+.strong {
+  background-color: greenyellow;
+}
