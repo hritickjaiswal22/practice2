@@ -1,0 +1,21 @@
+.accordion {
+  background-color: #fff;
+}
+
+.accordion-item {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+.toggle-btn {
+  display: flex;
+  background-color: transparent;
+  justify-content: space-between;
+  outline: none;
+  border: none;
+  width: 100%;
+  color: #146ef6;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
