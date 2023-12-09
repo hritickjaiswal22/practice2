@@ -23,4 +23,4 @@ function positionDot(x, y) {
   }
 }
 
-animationSection.addEventListener("mousemove", mousemoveHandler);
+animationSection.addEventListener("pointermove", mousemoveHandler);
