@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#animation-section {
+  height: 100vh;
+  position: relative;
+  background-color: black;
+  overflow: hidden;
+}
+
+.dot {
+  position: absolute;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: red;
+  top: 0;
+  left: 0;
+}
