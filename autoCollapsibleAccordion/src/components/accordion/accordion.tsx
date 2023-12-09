@@ -8,14 +8,19 @@ import {
 } from "./accordion.types";
 import { AccordionContext, AccordionItemContext } from "./accordion.contexts";
 import { useAccordion, useAccordionItem } from "./accordion.hooks";
+import styles from "./accordion.module.css";
+import AutoProgress from "../autoProgress/autoProgress";
 
 function AccordionItem({ children, id }: AccordionItemPropTypes) {
+  const { activePanel } = useAccordion();
+
   return (
     <AccordionItemContext.Provider
       value={{
         id,
       }}
     >
+      {activePanel === id ? <AutoProgress /> : ""}
       <>{children}</>
     </AccordionItemContext.Provider>
   );
@@ -26,9 +31,14 @@ function AccordionToggle({ children }: AccordionTogglePropTypes) {
   const { id } = useAccordionItem();
 
   return (
-    <div>
-      <button onClick={() => setActivePanel(id)}>{children}</button>
-    </div>
+    <>
+      <button
+        className={styles["toggle-btn"]}
+        onClick={() => setActivePanel(id)}
+      >
+        {children}
+      </button>
+    </>
   );
 }
 
@@ -66,7 +76,7 @@ function Accordion({ children }: AccordionPropTypes) {
         totalAccordionItems: Children.count(children),
       }}
     >
-      {children}
+      <section className={styles["accordion"]}>{children}</section>
     </AccordionContext.Provider>
   );
 }
