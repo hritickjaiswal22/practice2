@@ -1,5 +1,7 @@
 import "./App.css";
 
+// Roughly 2 hours for functionality without sine waves
+
 import AudioRecorder from "./containers/audioRecorder";
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "column",
+        gap: "1rem",
       }}
     >
       <AudioRecorder />

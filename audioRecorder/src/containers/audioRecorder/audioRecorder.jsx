@@ -77,8 +77,8 @@ function AudioRecorder() {
           </Btn>
         </>
       </RecorderBody>
-      {audioUrls.map((url) => (
-        <Audio src={url} />
+      {audioUrls.map((url, i) => (
+        <Audio src={url} key={i} />
       ))}
     </>
   );
