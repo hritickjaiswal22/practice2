@@ -108,15 +108,15 @@ function debounce(
   };
 }
 
-function expensive(name) {
-  console.log(`Hi ${name} this is expensive`);
+function expensive(e) {
+  console.log(e.target.value);
 }
 
 const optimised = debounce(expensive, 500, {
-  leading: false,
-  trailing: false,
+  leading: true,
+  trailing: true,
 });
 
-const btn = document.querySelector("button");
+const input = document.querySelector("input");
 
-btn.addEventListener("click", () => optimised("Hritick"));
+input.addEventListener("input", (e) => optimised(e));
