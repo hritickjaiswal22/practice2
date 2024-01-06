@@ -2,9 +2,17 @@
 const btn = document.getElementById("btn");
 const modalBtn = document.getElementById("modal-btn");
 const modal = document.getElementById("modal");
-let modalState = false;
+const modalContent = document.getElementById("modal-content-body");
 
 function showModal() {
+  if (modalContent.clientHeight >= window.innerHeight) {
+    modalContent.style.marginTop = `${
+      modalContent.clientHeight - window.innerHeight + 32
+    }px`;
+  } else {
+    modalContent.style.marginTop = "0";
+  }
+
   modal.classList.remove("hidden");
 }
 
