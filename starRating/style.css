@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.fa {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.fa-star-o:before {
+  content: "\f006";
+  color: #5f6368;
+}
+
+.fa-star:before {
+  content: "\f005";
+  color: #d56e0c;
+}
