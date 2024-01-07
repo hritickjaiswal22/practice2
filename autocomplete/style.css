@@ -1,0 +1,11 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+
+.list-item {
+  background-color: gray;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
