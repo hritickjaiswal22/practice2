@@ -1,86 +1,52 @@
+// With then chaining around 12 mins
+// after that 14 mins for catch chaining
+
 class CustomPromise {
-  resolvedData;
-  resolveChain = [];
-  rejectedData;
-  rejectChain = [];
-
-  static all(promises) {
-    const fulfilled = [];
-    const result = [];
-
-    return new CustomPromise((_resolve, _reject) => {
-      promises.forEach((promise, index) => {
-        promise
-          .then((data) => {
-            fulfilled.push(true);
-
-            result[index] = data;
-
-            if (fulfilled.length === promises.length) _resolve(result);
-          })
-          .catch((error) => _reject(error));
-      });
-    });
-  }
-
-  static resolve(val) {
-    return new CustomPromise((_resolve) => _resolve(val));
-  }
-
-  static reject(error) {
-    return new CustomPromise((_resolve, _reject) => _reject(error));
-  }
+  resovedValue = null;
+  resolvedFns = [];
+  rejectedValue = null;
+  rejectedFns = [];
 
   constructor(executor) {
     const resolve = (data) => {
-      this.resolvedData = data;
+      this.resovedValue = data;
 
-      if (this.resolveChain.length) {
-        this.resolveChain.reduce((acc, cb) => cb(acc), this.resolvedData);
-      }
+      if (this.resolvedFns.length)
+        this.resolvedFns.reduce((acc, cb) => cb(acc), this.resovedValue);
     };
 
     const reject = (data) => {
-      this.rejectedData = data;
+      this.rejectedValue = data;
 
-      if (this.rejectChain.length) {
-        this.rejectChain.reduce((acc, cb) => cb(acc), this.rejectedData);
-      }
+      if (this.rejectedFns.length)
+        this.rejectedFns.reduce((acc, cb) => cb(acc), this.rejectedValue);
     };
 
     executor(resolve, reject);
   }
 
   then(fn) {
-    this.resolveChain.push(fn);
+    this.resolvedFns.push(fn);
 
-    if (this.resolvedData !== undefined) {
-      this.resolveChain.reduce((acc, cb) => cb(acc), this.resolvedData);
-    }
+    if (this.resovedValue) fn(this.resovedValue);
 
     return this;
   }
 
   catch(fn) {
-    this.rejectChain.push(fn);
+    this.rejectedFns.push(fn);
 
-    if (this.rejectedData !== undefined) {
-      this.rejectChain.reduce((acc, cb) => cb(acc), this.rejectedData);
-    }
+    if (this.rejectedValue) fn(this.rejectedValue);
 
     return this;
   }
-
-  finally(fn) {
-    this.resolveChain.push(fn);
-    this.rejectChain.push(fn);
-
-    if (this.resolvedData !== undefined) {
-      this.resolveChain.reduce((acc, cb) => cb(acc), this.resolvedData);
-    }
-
-    if (this.rejectedData !== undefined) {
-      this.rejectChain.reduce((acc, cb) => cb(acc), this.rejectedData);
-    }
-  }
 }
+
+new CustomPromise((resolve, reject) => {
+  setTimeout(() => reject(1), 1000);
+})
+  .then((data) => data * 2)
+  .then((data) => data * 3)
+  .then((val) => console.log(val))
+  .catch((err) => `Rejcted value is ${err}`)
+  .catch((val) => console.log(val));
