@@ -1,5 +1,5 @@
 // With then chaining around 12 mins
-// after that 14 mins for catch chaining
+// after that 15 mins for catch chaining
 
 class CustomPromise {
   resovedValue = null;
@@ -28,7 +28,8 @@ class CustomPromise {
   then(fn) {
     this.resolvedFns.push(fn);
 
-    if (this.resovedValue) fn(this.resovedValue);
+    if (this.resovedValue)
+      this.resolvedFns.reduce((acc, cb) => cb(acc), this.resovedValue);
 
     return this;
   }
@@ -36,17 +37,18 @@ class CustomPromise {
   catch(fn) {
     this.rejectedFns.push(fn);
 
-    if (this.rejectedValue) fn(this.rejectedValue);
+    if (this.rejectedValue)
+      this.rejectedFns.reduce((acc, cb) => cb(acc), this.rejectedValue);
 
     return this;
   }
 }
 
 new CustomPromise((resolve, reject) => {
-  setTimeout(() => reject(1), 1000);
+  setTimeout(() => resolve(1), 1000);
 })
   .then((data) => data * 2)
   .then((data) => data * 3)
-  .then((val) => console.log(val))
-  .catch((err) => `Rejcted value is ${err}`)
-  .catch((val) => console.log(val));
+  .then((val) => console.log(val));
+// .catch((err) => `Rejcted value is ${err}`)
+// .catch((val) => console.log(val));
