@@ -1,12 +1,31 @@
 // With then chaining around 12 mins
 // after that 15 mins for catch chaining
 // after that 21 mins with finally
+// Promise.all in 4 mins
 
 class CustomPromise {
   resovedValue = null;
   resolvedFns = [];
   rejectedValue = null;
   rejectedFns = [];
+
+  static all(promises) {
+    return new CustomPromise((resolve, reject) => {
+      const result = Array(promises.length).fill(null);
+      let totalResolved = 0;
+
+      for (let i = 0; i < promises.length; i++) {
+        promises[i]
+          .then((val) => {
+            result[i] = val;
+            totalResolved++;
+
+            if (totalResolved === promises.length) resolve(result);
+          })
+          .catch((err) => reject(err));
+      }
+    });
+  }
 
   constructor(executor) {
     const resolve = (data) => {
@@ -65,3 +84,9 @@ new CustomPromise((resolve, reject) => {
   .then((data) => data * 3)
   .then((val) => val)
   .finally((val) => console.log("From finally " + val));
+
+CustomPromise.all([
+  new CustomPromise((resolve) => setTimeout(() => resolve(0), 3000)),
+  new CustomPromise((resolve) => setTimeout(() => resolve(1), 1000)),
+  new CustomPromise((resolve) => setTimeout(() => resolve(2), 2000)),
+]).then((result) => console.log(result));
