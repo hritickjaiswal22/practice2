@@ -1,5 +1,6 @@
 // With then chaining around 12 mins
 // after that 15 mins for catch chaining
+// after that 21 mins with finally
 
 class CustomPromise {
   resovedValue = null;
@@ -42,6 +43,19 @@ class CustomPromise {
 
     return this;
   }
+
+  finally(fn) {
+    this.resolvedFns.push(fn);
+    this.rejectedFns.push(fn);
+
+    if (this.resovedValue) {
+      this.resolvedFns.reduce((acc, cb) => cb(acc), this.resovedValue);
+    }
+
+    if (this.rejectedValue) {
+      this.rejectedFns.reduce((acc, cb) => cb(acc), this.rejectedValue);
+    }
+  }
 }
 
 new CustomPromise((resolve, reject) => {
@@ -49,6 +63,5 @@ new CustomPromise((resolve, reject) => {
 })
   .then((data) => data * 2)
   .then((data) => data * 3)
-  .then((val) => console.log(val));
-// .catch((err) => `Rejcted value is ${err}`)
-// .catch((val) => console.log(val));
+  .then((val) => val)
+  .finally((val) => console.log("From finally " + val));
