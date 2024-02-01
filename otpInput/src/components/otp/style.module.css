@@ -1,3 +1,7 @@
+.otpForm {
+  text-align: center;
+}
+
 .container {
   display: flex;
   gap: 0.25rem;

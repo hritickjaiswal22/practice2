@@ -29,7 +29,7 @@ function OtpInput({
       setValue(e.key);
 
       setActiveInput((prev) => {
-        if (prev !== n - 1) {
+        if (prev !== n) {
           return prev + 1;
         }
 
@@ -59,20 +59,22 @@ function OtpForm({ n }: { n: number }) {
     if (containerRef.current) {
       if (containerRef.current) {
         (
-          containerRef.current.children[activeInput] as HTMLInputElement
+          containerRef.current.children[
+            Math.min(activeInput, n - 1)
+          ] as HTMLInputElement
         ).focus();
       }
     }
   }, [activeInput]);
 
   useEffect(() => {
-    if (activeInput === n - 1) {
+    if (activeInput === n) {
       setCanSubmit(true);
     }
   }, [activeInput]);
 
   return (
-    <form>
+    <form className={styles.otpForm}>
       <div className={styles.container} ref={containerRef}>
         {Array(n)
           .fill(0)
