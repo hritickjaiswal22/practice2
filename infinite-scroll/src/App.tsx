@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./App.css";
+import Small from "../public/min.jpg";
+import LazyImage from "./components/LazyImage";
 
 const debounce = (fn: Function, ms = 300) => {
   let timeoutId: ReturnType<typeof setTimeout>;
@@ -36,18 +38,19 @@ function App() {
   console.log(elements);
 
   return (
-    <main
-      className="container"
-      onScroll={debounce(scrollHandler)}
-      ref={containerRef}
-    >
-      {Array.from({ length: elements }, (_, index) => (
-        <div className="box" key={index}>
-          {index + 1}
-        </div>
-      ))}
-      <h1>Loading...</h1>
-    </main>
+    <>
+      <main
+        className="container"
+        onScroll={debounce(scrollHandler)}
+        ref={containerRef}
+      >
+        {Array.from({ length: elements }, (_, index) => (
+          <LazyImage key={index} />
+        ))}
+        <h1>Loading...</h1>
+      </main>
+      <LazyImage />
+    </>
   );
 }
 
